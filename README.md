@@ -20,4 +20,4 @@ Start the node application: Open "src" folder in intergarted interminal then run
 Sequelize processing will be started to update datatbase schema.
 
 ## How to check the API
-Call the API http://<your localhost>:<your port 8082>/api/admin/posts/111111
+Call the API http://<hostAddress>:<portNumber>/api/admin/posts/111111
