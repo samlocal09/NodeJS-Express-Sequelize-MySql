@@ -1,0 +1,25 @@
+{
+  "name": "nodejs-express-sequelizejs-mysql",
+  "version": "1.0.0",
+  "description": "nodejs-express-sequelizejs-mysql",
+  "main": "index.js",
+  "scripts": {
+    "build-dev": "cross-env NODE_ENV=development nodemon server.js",
+    "build-prod": "cross-env NODE_ENV=production nodemon server.js"
+  },
+  "keywords": [
+    "Lib-NodeJS-Structure-01"
+  ],
+  "author": "JSA",
+  "license": "ISC",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.16.3",
+    "express-joi-validate": "^3.0.1",
+    "joi": "^17.3.0",
+    "method-override": "^3.0.0",
+    "mysql2": "^1.5.3",
+    "nodemon": "^2.0.6",
+    "sequelize": "^6.3.5"
+  }
+}
