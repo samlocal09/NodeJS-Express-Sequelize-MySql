@@ -3,6 +3,7 @@ const router = express.Router();
 var requestHandler = require('../middleware/requestHandler');
 
 const postController = require('../controllers/admin/post/post.controller');
+const userController = require('../controllers/admin/user/user.controller');
 
 var joiValidator = require('../middleware/joiValidator');
 var postValidator = require('../controllers/admin/post/post.validator');
@@ -32,5 +33,16 @@ router.put('/posts/:postId', requestHandler(async (req, res, next) => {
 router.delete('/posts/:postId', requestHandler(async (req, res, next) => {
     await postController.delete(req, res);
 }));
+
+// ========================================
+// User
+// ========================================
+// Create a new Post
+router.post('/users', 
+    //joiValidator(postValidator.createPostSchema),
+    requestHandler(async (req, res, next) => {
+        await userController.create(req, res)
+    })
+);
 
 module.exports = router;

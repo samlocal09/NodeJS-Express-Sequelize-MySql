@@ -13,10 +13,12 @@
   "author": "JSA",
   "license": "ISC",
   "dependencies": {
+    "bcryptjs": "^2.4.3",
     "cors": "^2.8.5",
     "express": "^4.16.3",
     "express-joi-validate": "^3.0.1",
     "joi": "^17.3.0",
+    "jsonwebtoken": "^8.5.1",
     "method-override": "^3.0.0",
     "mysql2": "^1.5.3",
     "nodemon": "^2.0.6",
