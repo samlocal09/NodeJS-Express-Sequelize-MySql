@@ -66,9 +66,11 @@ _ROOT_CONF.sequelize = sequelize;
 
 //Models
 var postModel = require('../models/post.model')(sequelize, Sequelize);
+var userModel = require('../models/user.model')(sequelize, Sequelize);
 
 _ROOT_CONF.db = {
-  post: postModel
+  post: postModel,
+  user: userModel
 }
 
 module.exports = _ROOT_CONF;
