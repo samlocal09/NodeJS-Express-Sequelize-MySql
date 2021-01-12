@@ -7,6 +7,7 @@ const userController = require('../controllers/admin/user/user.controller');
 
 var joiValidator = require('../middleware/joiValidator');
 var postValidator = require('../controllers/admin/post/post.validator');
+var verifyToken = require('../middleware/verifyToken');
 
 // ========================================
 // Post
@@ -37,11 +38,26 @@ router.delete('/posts/:postId', requestHandler(async (req, res, next) => {
 // ========================================
 // User
 // ========================================
-// Create a new Post
+
+// Login
+router.post('/users/login', 
+    requestHandler(async (req, res, next) => {
+        await userController.login(req, res);
+    })
+);
+
+// Create a new User
 router.post('/users', 
-    //joiValidator(postValidator.createPostSchema),
     requestHandler(async (req, res, next) => {
         await userController.create(req, res)
+    })
+);
+
+// Get My Profile
+router.get('/users/:userId', 
+    verifyToken,
+    requestHandler(async (req, res, next) => {
+        await userController.getMyProfile(req, res);
     })
 );
 

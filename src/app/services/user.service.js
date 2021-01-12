@@ -1,5 +1,6 @@
 const _ROOT_CONF = require('../config/rootConfig');
 const User = _ROOT_CONF.db.user;
+
 var bcrypt = require('bcryptjs'); 
 
 exports.create = function(req){
@@ -11,3 +12,21 @@ exports.create = function(req){
         password: hasedPassword
     });
 };
+
+exports.getById = function(id){
+  return User.findOne({
+      where: {
+          user_id: id
+      },
+      attributes: ['user_id', 'username', 'user_email']
+  })
+};
+
+exports.getUserByEmail = function(email){
+    return User.findOne({
+        where: {
+            user_email: email
+        },
+        attributes: ['user_id', 'username', 'user_email', 'password']
+    })
+  };
