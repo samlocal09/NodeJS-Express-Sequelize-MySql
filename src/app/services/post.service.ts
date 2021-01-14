@@ -3,7 +3,7 @@ const Post = _ROOT_CONF.db.post;
 
 export const createPost = (req) => {
     return Post.create({
-        title: req.body.title,
+        title: null,//req.body.title,
         content: req.body.content,
         article_id: req.body.article_id
     });

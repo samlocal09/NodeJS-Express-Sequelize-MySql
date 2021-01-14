@@ -1,6 +1,6 @@
 import * as express from 'express';
 
-import { requestHandler } from './../middleware/requestHandler';
+import asyncHandler from './../middleware/asyncHandler';
 
 //import UserController from './../controllers/admin/user/user.controller';
 import postController  from './../controllers/admin/post/post.controller';
@@ -16,10 +16,10 @@ const router = express.Router();
 // Create a new Post
 router.post('/posts', 
     JoiValidator(CreatePostSchema),
-    ((req, res) => postController.create(req, res))
-    // requestHandler(async (req, res, next) => {
-    //     await postController.create(req, res);
-    // )
+    //((req, res) => postController.create(req, res))
+    asyncHandler(async (req, res, next) => {
+        await postController.create(req, res);
+    })
 );
 
 // // Get a single Customer by Id

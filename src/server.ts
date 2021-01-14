@@ -57,11 +57,7 @@ app.use((error, req, res, next) => {
 // Register server-side
 // ========================================
 const port: any = process.env.PORT || _ROOT_CONF.port;
-var server = app.listen(port, '0.0.0.0', function () {
-  let host = app.get("host");
-  let port = app.get("port");
- 
-  console.log(`Server running at http://${host}:${port}/`)
-});
+var server = app.listen(port, '0.0.0.0');
+console.log(`Server running at http://0.0.0.0:${port}/`)
 
 export default server;
