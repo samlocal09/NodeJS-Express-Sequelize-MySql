@@ -1,7 +1,7 @@
-var env_dev = require('./environments/envDevelopment.js');
-var env_prod = require('./environments/envProduction.js');
+import { env_dev } from './environments/envDevelopment';
+import { env_prod } from './environments/envProduction';
 
-module.exports = function() {
+export function getEnv() {
   let envMode = process.env.NODE_ENV ? process.env.NODE_ENV.trim().toLocaleLowerCase() : 'development';
   console.log('Current NODE_ENV is: ' + envMode);
   switch(envMode){

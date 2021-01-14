@@ -1,13 +1,14 @@
-var express = require('express');
+import * as express from 'express';
+import * as cors from 'cors';
+import * as bodyParser from 'body-parser';
+import * as methodOverride from 'method-override';
+
+import { _ROOT_CONF } from './app/config/rootConfig';
+import adminRoutes from './app/routes/admin.route';
+
+import { errorHandler } from './app/middleware/errorHandler';
+
 var app = express();
-var cors = require('cors');
-var bodyParser = require('body-parser');
-const _ROOT_CONF = require('./app/config/rootConfig');
-
-var adminRoutes = require('./app/routes/admin.route');
-
-var methodOverride = require('method-override');
-var errorHandler = require('./app/middleware/errorHandler');
 
 // ========================================
 // Running Sequelize
@@ -47,13 +48,20 @@ app.use('/api/admin', adminRoutes);
 app.use(methodOverride())
 app.use(errorHandler);
 
+app.use((error, req, res, next) => {
+    console.error(error.stack);
+    res.status(500).send('Something Broke!');
+   })
+   
 // ========================================
 // Register server-side
 // ========================================
-const port = process.env.PORT || _ROOT_CONF.port;
+const port: any = process.env.PORT || _ROOT_CONF.port;
 var server = app.listen(port, '0.0.0.0', function () {
-  var host = server.address().address
-  var port = server.address().port
+  let host = app.get("host");
+  let port = app.get("port");
  
   console.log(`Server running at http://${host}:${port}/`)
 });
+
+export default server;

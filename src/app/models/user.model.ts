@@ -1,26 +1,22 @@
-module.exports = (sequelize, Sequelize) => {
-	const Post = sequelize.define('post', {
-      post_id: {
+export function UserFactory(sequelize, Sequelize) {
+	const User = sequelize.define('user', {
+      user_id: {
 		type: Sequelize.INTEGER,
 		primaryKey: true,
 		allowNull: false,
 		autoIncrement: true
 	  },
-	  title: {
+	  username: {
+		allowNull: false,
+        type: Sequelize.STRING(255)
+      },
+	  user_email: {
 		allowNull: false,
         type: Sequelize.STRING(255)
 	  },
-	  content: {
+	  password: {
 		allowNull: true,
-        type: Sequelize.STRING(4000)
-	  },
-	  article_id: {
-		allowNull: true,
-		type: Sequelize.INTEGER,
-	  },
-	  url: {
-		allowNull: true,
-        type: Sequelize.STRING(100)
+        type: Sequelize.STRING(60).BINARY
 	  },
 	  created_at: {
 		allowNull: true,
@@ -42,5 +38,5 @@ module.exports = (sequelize, Sequelize) => {
 		timestamps: false
 	});
 	
-	return Post;
+	return User;
 }

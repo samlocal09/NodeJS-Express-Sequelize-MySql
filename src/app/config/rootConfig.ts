@@ -1,11 +1,8 @@
-const EvnConfig = require('./envConfig.js');
-var env = new EvnConfig();
+import { getEnv }  from './envConfig';
+import { PostFactory } from '../models/post.model';
+import { UserFactory } from '../models/user.model';
 
-const _ROOT_CONF = {};
-
-//---------------------------------------
-// Common info
-_ROOT_CONF.port = env.port;
+var env = getEnv();
 
 //---------------------------------------
 // Register Sequelize
@@ -56,21 +53,22 @@ const sequelize = new Sequelize(env.database, env.username, env.password, {
   logging:  function(msg) { console.log(msg)},
   
   pool: {
-    max: env.max,
+    max: env.pool.max,
     min: env.pool.min,
     acquire: env.pool.acquire,
     idle: env.pool.idle
   }
 });
-_ROOT_CONF.sequelize = sequelize;
 
 //Models
-var postModel = require('../models/post.model')(sequelize, Sequelize);
-var userModel = require('../models/user.model')(sequelize, Sequelize);
+var postModel = PostFactory(sequelize, Sequelize);
+var userModel = UserFactory(sequelize, Sequelize);
 
-_ROOT_CONF.db = {
-  post: postModel,
-  user: userModel
-}
-
-module.exports = _ROOT_CONF;
+export const _ROOT_CONF = {
+    port: env.port,
+    sequelize: sequelize,
+    db: {
+        post: postModel,
+        user: userModel
+    }
+};
