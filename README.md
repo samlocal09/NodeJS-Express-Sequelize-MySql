@@ -8,6 +8,9 @@ Technical are implemented:
  - Error handler
  - Joi validation middleware
 
+## Incomming
+In-processing: Converting from js to typescript...
+
 ## How to run the application
 
 Database: MySQL version 5.1.73-community - MySQL Community Server (GPL)
