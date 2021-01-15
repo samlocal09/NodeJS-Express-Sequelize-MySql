@@ -1,9 +1,9 @@
-const env_dev = {
+export const env_prod = {
     database: 'testdb',
     username: 'root',
     password: '',
     host: 'localhost',
-    port: 8082,
+    port: 8083,
     dialect: 'mysql',
     pool: {
         max: 5,
@@ -12,5 +12,3 @@ const env_dev = {
         idle: 10000
     }
   };
-  
-  module.exports = env_dev;

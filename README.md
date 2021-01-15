@@ -18,7 +18,9 @@ Database: MySQL version 5.1.73-community - MySQL Community Server (GPL)
  2) Refer path ./scr/app/config/environments/envDevelopment.js to edit host & post based on your device configuarion.
  3) Start the server, you can use XAMPP,... whatever.
 
-Start the node application: Open "src" folder in intergarted interminal then run the command "npm run build-dev"
+Start the node application: Open "src" folder in intergarted interminal then run the commands below:
+ 1) npm install
+ 2) npm run build-dev
 
 Sequelize processing will be started to update datatbase schema.
 
