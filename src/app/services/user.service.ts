@@ -1,9 +1,9 @@
 import { _ROOT_CONF } from '../config/rootConfig';
-import { bcrypt } from 'bcryptjs'; 
+import * as bcrypt from 'bcryptjs'; 
 const User = _ROOT_CONF.db.user;
-export class UserService {
 
-    public create(req){
+const userService = {
+    create(req){
         var hasedPassword = bcrypt.hashSync(req.body.password, 8);
     
         return User.create({
@@ -11,24 +11,25 @@ export class UserService {
             user_email: req.body.user_email,
             password: hasedPassword
         });
-    };
-    
-    public getById(id){
-      return User.findOne({
-          where: {
-              user_id: id
-          },
-          attributes: ['user_id', 'username', 'user_email']
-      })
-    };
-    
-    public getUserByEmail(email){
+    },
+
+    getById(id){
         return User.findOne({
             where: {
-                user_email: email
+                user_id: id
             },
-            attributes: ['user_id', 'username', 'user_email', 'password']
+            attributes: ['user_id', 'username', 'user_email']
         })
-      };
+      },
+      
+    getUserByEmail(email){
+          return User.findOne({
+              where: {
+                  user_email: email
+              },
+              attributes: ['user_id', 'username', 'user_email', 'password']
+          })
+    }
 }
 
+export default userService;

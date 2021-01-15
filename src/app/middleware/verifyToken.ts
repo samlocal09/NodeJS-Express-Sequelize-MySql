@@ -1,5 +1,5 @@
 import { errorResponse } from './../helpers/response';
-import jwt from 'jsonwebtoken';
+import * as jwt from 'jsonwebtoken';
 
 export const verifyToken = (req, res, next) => {
     var token = req.headers['x-access-token'];
