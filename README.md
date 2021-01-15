@@ -9,7 +9,7 @@ Technical are implemented:
  - Joi validation middleware
 
 ## Incomming
-In-processing: Converting from js to typescript...
+In-processing: JWT Token - Authentication
 
 ## How to run the application
 
