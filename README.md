@@ -8,7 +8,7 @@ Technical are implemented:
  - Error handler
  - Joi validation middleware
 
-## Incomming
+## Incoming
 In-processing: JWT Token - Authentication
 
 ## How to run the application
