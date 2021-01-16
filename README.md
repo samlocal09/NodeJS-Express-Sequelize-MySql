@@ -9,7 +9,7 @@ Technical are implemented:
  - Joi validation middleware
 
 ## Incoming
-In-processing: JWT Token - Authentication
+Authorization
 
 ## How to run the application
 
