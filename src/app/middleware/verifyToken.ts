@@ -1,7 +1,7 @@
 import { errorResponse } from './../helpers/response';
 import * as jwt from 'jsonwebtoken';
 
-export const verifyToken = (req, res, next) => {
+export const auth = (req, res, next) => {
     var token = req.headers['x-access-token'];
     if(!token) return errorResponse(req, res, 'No token provided', 401);
 

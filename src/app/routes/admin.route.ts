@@ -5,7 +5,7 @@ import asyncHandler from './../middleware/asyncHandler';
 import userController from './../controllers/admin/user/user.controller';
 import postController  from './../controllers/admin/post/post.controller';
 
-import { verifyToken } from './../middleware/verifyToken';
+import { auth } from './../middleware/verifyToken';
 import { JoiValidator }  from './../middleware/joiValidator';
 import { CreatePostSchema } from '../controllers/admin/post/post.validator';
 
@@ -14,8 +14,7 @@ const router = express.Router();
 // Post
 // ========================================
 // Create a new Post
-router.post('/posts', 
-    JoiValidator(CreatePostSchema),
+router.post('/posts', auth, JoiValidator(CreatePostSchema), 
     asyncHandler(async (req, res, next) => {
         await postController.create(req, res);
     })
@@ -29,40 +28,39 @@ router.get('/posts/:postId',
 );
 
 // Update a Post with Id
-router.put('/posts/:postId',
+router.put('/posts/:postId', auth,
     asyncHandler(async (req, res, next) => {
             await postController.update(req, res);
     })
 );
 
 // Delete a Customer with Id
-router.delete('/posts/:postId',
+router.delete('/posts/:postId', auth,
     asyncHandler(async (req, res, next) => {
         await postController.delete(req, res);
     })
 );
 
-// // ========================================
-// // User
-// // ========================================
+// ========================================
+// User
+// ========================================
 
 // Login
-router.post('/users/login', 
+router.post('/users/login', auth,
     asyncHandler(async (req, res, next) => {
         await userController.login(req, res);
     })
 );
 
 // Create a new User
-router.post('/users', 
+router.post('/users',
     asyncHandler(async (req, res, next) => {
         await userController.create(req, res)
     })
 );
 
 // Get My Profile
-router.get('/users/:userId', 
-    verifyToken,
+router.get('/users/:userId', auth,
     asyncHandler(async (req, res, next) => {
         await userController.getMyProfile(req, res);
     })
