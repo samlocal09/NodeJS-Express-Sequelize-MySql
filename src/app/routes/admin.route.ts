@@ -5,7 +5,9 @@ import asyncHandler from './../middleware/asyncHandler';
 import userController from './../controllers/admin/user/user.controller';
 import postController  from './../controllers/admin/post/post.controller';
 
-import { auth } from './../middleware/verifyToken';
+import { USER_ROLE } from './../utils/constant';
+
+import { auth } from './../middleware/auth';
 import { JoiValidator }  from './../middleware/joiValidator';
 import { CreatePostSchema } from '../controllers/admin/post/post.validator';
 
@@ -14,7 +16,8 @@ const router = express.Router();
 // Post
 // ========================================
 // Create a new Post
-router.post('/posts', auth, JoiValidator(CreatePostSchema), 
+router.post('/posts', auth([USER_ROLE.ADMIN]), 
+    JoiValidator(CreatePostSchema), 
     asyncHandler(async (req, res, next) => {
         await postController.create(req, res);
     })
@@ -28,14 +31,14 @@ router.get('/posts/:postId',
 );
 
 // Update a Post with Id
-router.put('/posts/:postId', auth,
+router.put('/posts/:postId', auth(),
     asyncHandler(async (req, res, next) => {
             await postController.update(req, res);
     })
 );
 
 // Delete a Customer with Id
-router.delete('/posts/:postId', auth,
+router.delete('/posts/:postId', auth(),
     asyncHandler(async (req, res, next) => {
         await postController.delete(req, res);
     })
@@ -46,7 +49,7 @@ router.delete('/posts/:postId', auth,
 // ========================================
 
 // Login
-router.post('/users/login', auth,
+router.post('/users/login',
     asyncHandler(async (req, res, next) => {
         await userController.login(req, res);
     })
@@ -60,7 +63,7 @@ router.post('/users',
 );
 
 // Get My Profile
-router.get('/users/:userId', auth,
+router.get('/users/:userId', auth([USER_ROLE.ADMIN]),
     asyncHandler(async (req, res, next) => {
         await userController.getMyProfile(req, res);
     })

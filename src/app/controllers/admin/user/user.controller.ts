@@ -1,3 +1,4 @@
+import { USER_ROLE } from './../../../utils/constant';
 import { errorResponse, successResponse } from './../../../helpers/response';
 import userService from './../../../services/user.service';
 
@@ -28,7 +29,13 @@ const userController = {
         var isValidPassword = bcrypt.compareSync(req.body.password, user.password);
         if (!isValidPassword) return errorResponse(req, res, 'Username or password is not correct', 401);
         
-        var token = jwt.sign({ user_id: user.user_id }, 'secretCode', {
+        //Default role set for user
+        let userRole = USER_ROLE.ADMIN;
+
+        var token = jwt.sign({ 
+            user_id: user.user_id,
+            user_role: userRole
+        }, 'secretCode', {
           expiresIn: 3600 // expires in 1 hour
         });
         
