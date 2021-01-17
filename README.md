@@ -9,7 +9,7 @@ Technical are implemented:
  - Joi validation middleware
 
 ## Incoming
-Authorization
+Error Logging
 
 ## How to run the application
 

@@ -1,3 +1,7 @@
+// ========================================
+// Messges
+// ========================================
+
 export const COMMON_MESSAGE = {
     ERROR_PROCESSING: 'There is an error processing'
 }
@@ -8,4 +12,13 @@ export const ERROR_MESSAGE = {
 
 export const SUCCESS_MESSAGE = {
     LOGIN_SUCCESS: 'Login to the system successfully'
+}
+
+
+// ========================================
+// Roles
+// ========================================
+
+export const USER_ROLE = {
+    ADMIN: 'Admin'
 }
