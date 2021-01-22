@@ -1,5 +1,6 @@
-import { errorResponse } from './../helpers/response';
+import { errorResponse } from '../helpers/response';
 import * as jwt from 'jsonwebtoken';
+
 
 // roles param can be assigned as auth(['Admin', 'Supporter'])
 // or can be assigned as auth(), it will validate the authentication only
