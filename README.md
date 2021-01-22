@@ -7,9 +7,9 @@ Technical are implemented:
  - Setup service for controller
  - Error handler
  - Joi validation middleware
-
-## Incoming
-Error Logging
+ - Winston logging
+ 
+## Incoming...
 
 ## How to run the application
 
