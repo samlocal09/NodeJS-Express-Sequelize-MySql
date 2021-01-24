@@ -4,10 +4,16 @@ import { transports, createLogger, format } from 'winston';
 import 'winston-daily-rotate-file'
 
 // Logger configuration
+const myFormat = format.printf(({ level, message, label, timestamp }) => {
+    console.log(JSON.stringify(message));
+    return `{"timestamp": "${timestamp}", "level": "${level}", "message": ${JSON.stringify(message)} }`;
+})
+
 const winstonLogConfig = {
     format: format.combine(
         format.timestamp(),
-        format.json()
+        format.json(),
+        myFormat
     ),
     'transports' : [
         new transports.DailyRotateFile ({
@@ -26,9 +32,11 @@ export function errorHandler(err, req, res, next) {
         var logger = createLogger(winstonLogConfig);
 
         // Log a message
-        logger.error({ 
-            endpoint: req.originalUrl,
-            detail: err.errors[0].message 
+        logger.error({
+            message: { 
+                endpoint: req.originalUrl,
+                detail: err.errors[0].message 
+            }
         });
         
         let errorMessgae = err.message ? err.message : COMMON_MESSAGE.ERROR_PROCESSING;
