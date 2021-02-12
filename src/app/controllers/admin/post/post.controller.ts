@@ -7,6 +7,11 @@ const postController = {
         return successResponse(req, res, { post });
     },
 
+    async getAll (req, res): Promise<any> {
+        var post = await postService.getAll();
+        return successResponse(req, res, { post });		
+    },
+
     async findById (req, res): Promise<any> {
         var post = await postService.findById(req);
         return successResponse(req, res, { post });		

@@ -23,6 +23,13 @@ router.post('/posts', auth([USER_ROLE.ADMIN]),
     })
 );
 
+// Get all Post
+router.get('/posts',
+    asyncHandler(async (req, res, next) => {
+            await postController.getAll(req, res);
+    })
+);
+
 // Get a single Customer by Id
 router.get('/posts/:postId',
     asyncHandler(async (req, res, next) => {

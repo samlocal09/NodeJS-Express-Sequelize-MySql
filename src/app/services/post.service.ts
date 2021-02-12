@@ -10,6 +10,10 @@ const postService = {
         })
     },
 
+    getAll(){
+        return Post.findAll()
+    },
+
     findById(req) {	
         return Post.findOne({
             where:{
