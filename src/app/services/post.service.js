@@ -18,6 +18,10 @@ exports.findById = function(req){
     });
 };
 
+exports.getAll = function(req){	
+    return Post.findAll()
+};
+
 // Update a Post
 exports.update = function(req){
     let id = req.params.postId;

@@ -51,9 +51,5 @@ app.use(errorHandler);
 // Register server-side
 // ========================================
 const port = process.env.PORT || _ROOT_CONF.port;
-var server = app.listen(port, '0.0.0.0', function () {
-  var host = server.address().address
-  var port = server.address().port
- 
-  console.log(`Server running at http://${host}:${port}/`)
-});
+var server = app.listen(port, '0.0.0.0');
+console.log(`Server running at http://0.0.0.0:${port}/`)

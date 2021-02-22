@@ -1,5 +1,5 @@
 var responseHelper = require('../helpers/response');
-var { errorMessage } = require('../utils/constant');
+var { MSG_ERROR } = require('../utils/constant').MESSAGE;
 
 module.exports = function(schema){
     return (req, res, next) => {
@@ -8,7 +8,7 @@ module.exports = function(schema){
       if (valid) {
         next();
       } else {
-        let message = error ? `${errorMessage.VALIDATION_ERROR}. ${error.message}` : errorMessage.VALIDATION_ERROR;
+        let message = error ? `${MSG_ERROR.VALIDATION_ERROR}. ${error.message}` : MSG_ERROR.VALIDATION_ERROR;
         return responseHelper.errorResponse(req, res, message, 400);
       }
     }
